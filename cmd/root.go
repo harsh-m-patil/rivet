@@ -4,6 +4,8 @@ Copyright © 2026 Harshwardhan Patil
 package cmd
 
 import (
+	"fmt"
+	"log/slog"
 	"os"
 
 	"github.com/harsh-m-patil/rivet/internal/llm"
@@ -14,10 +16,23 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "rivet",
 	Short: "Minimal AI coding agent",
-	Long: `AI coding agent based on minimal philosophy`,
+	Long:  `AI coding agent based on minimal philosophy`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if prompt, _ := cmd.Flags().GetString("prompt"); prompt != "" {
 			llm.GetAnswer(prompt)
+			return
+		}
+		for {
+			var prompt string
+			print("> ")
+			_, err := fmt.Scan(&prompt)
+			if err != nil {
+				slog.Error(err.Error())
+			}
+			if prompt != "" {
+				llm.GetAnswer(prompt)
+				println()
+			}
 		}
 	},
 }

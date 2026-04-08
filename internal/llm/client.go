@@ -15,7 +15,7 @@ func GetAnswer(prompt string) {
 			openai.SystemMessage("You are Rivet. A terminal based minimal coding agent"),
 			openai.UserMessage(prompt),
 		},
-		Model: openai.ChatModelGPT5_2,
+		Model: openai.ChatModelGPT5Nano,
 	})
 
 	for stream.Next() {
@@ -24,7 +24,6 @@ func GetAnswer(prompt string) {
 			print(evt.Choices[0].Delta.Content)
 		}
 	}
-	println()
 
 	if err := stream.Err(); err != nil {
 		panic(err.Error())
