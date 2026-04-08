@@ -1,6 +1,8 @@
 # Rivet
 > A terminal-based coding agent written in Go.
 
+![Screenshot](./assets/screenshot.png) 
+
 ## Status
 Rivet is in early development. The project is currently focused on core
 agent architecture and workflow primitives.
